@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "express-project",
   "version": "1.0.0",
   "description": "Express database project",
   "main": "index.js",
@@ -7,5 +7,22 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Xolani Mgube",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "^0.15.1",
+    "express": "^4.17.1",
+    "jasmine": "^3.5.0",
+    "mustache": "^4.0.1"
+  },
+  "devDependencies": {
+    "pug": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XolaniMgube/express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/XolaniMgube/express/issues"
+  },
+  "homepage": "https://github.com/XolaniMgube/express#readme"
 }

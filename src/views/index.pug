@@ -5,10 +5,10 @@ html
     body
         h1= "Add a visitor"
 
-        form(action="/new_visitor" method="GET")
+        form(action="/new_visitor" method="POST")
 
             label Visitor's Name: 
-            input(type="text" name="name")
+            input(type="text" name="name")  
             br
             br
             label Visitor's Age: 
@@ -35,3 +35,5 @@ html
             input(type="submit" value="Submit") 
 
             a(href="new_visitor") link
+
+            
