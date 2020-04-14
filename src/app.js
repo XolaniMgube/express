@@ -1,8 +1,9 @@
+// requiring frameworks to use
 let express = require('express');
 let bodyParser = require('body-parser');
-// let pug = require('pug')
+let {Client} = require('pg')
 
-const {Client} = require('pg')
+// postgres class that will start the connection
 const client = new Client({
   user: "user",
   password: "pass",
@@ -11,9 +12,9 @@ const client = new Client({
   database: "db"
 })
 
-let app = express();
+let app = express();//starting the program
 
-let urlencodedParser = bodyParser.urlencoded({extended: false})
+let urlencodedParser = bodyParser.urlencoded({extended: false})//for viewing express on a pug template
 
 app.set('view engine', 'pug');
 app.use('/css', express.static('css'))
@@ -22,10 +23,12 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+// posting to new visitor path to render the html form data
 app.post('/new_visitor', urlencodedParser, function(req, res) { 
-
+  
     res.render('successful', {data: req.body});
 
+    // add new visitor function
     async function addVisitor(name, age, date, time, assistedBy, comments) {
       try{
         await client.connect()
@@ -46,19 +49,8 @@ app.post('/new_visitor', urlencodedParser, function(req, res) {
       }
     }
 
-    // async function viewTable(){
-    //   await client.connect()
-    //   console.log("Connected successfully.")
-    //   const results = await client.query("select * from visitors")
-    //   console.table(results.rows)
-    //   await client.end()
-    //   console.log("Client disconnected successfully.")
-    // }
-
-    // viewTable()
-
+    // calling the addNewVisitor function
     addVisitor(
-      // req.body.id,
       req.body.name,
       req.body.age,
       req.body.date,
@@ -68,9 +60,10 @@ app.post('/new_visitor', urlencodedParser, function(req, res) {
       )
 });
 
-app.listen(3000, function() {
-  console.log('Listening on port 3000...')
+app.listen(3100, function() {
+  console.log('Listening on port 3100...')
 });
+
 
 
 
