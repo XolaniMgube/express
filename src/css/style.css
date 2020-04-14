@@ -8,3 +8,21 @@ form{
     grid-template-columns: 1fr;
     grid-template-rows: repeat(7, 1fr);
 }
+
+div{
+    display: grid;
+    grid-template-columns: 500px;
+    grid-template-rows: 1fr 1fr;
+}
+
+label{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    height: 20px;
+    padding-top: 20px;
+}
+
+input{
+    height: 25px;
+}
