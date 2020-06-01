@@ -1,13 +1,10 @@
 // requiring frameworks to use
 const Visitors = require('./table')
 
-
 let express = require('express');
 let bodyParser = require('body-parser');
 require('dotenv').config({path: '../.env'})
 let {Client} = require('pg')
-
-
 
 // postgres class that will start the connection
 const client = new Client({
@@ -32,7 +29,9 @@ app.get('/', function(req, res) {
 // posting to new visitor path to render the html form data
 app.post('/new_visitor', urlencodedParser, async function(req, res) { 
   let table = new Visitors()
-  
+
+    // creating table if it does not already exist
+    let checkTable = await table.createTable()
   
     // calling the addNewVisitor function
     let addNew = await table.addVisitor(
@@ -43,14 +42,13 @@ app.post('/new_visitor', urlencodedParser, async function(req, res) {
       req.body.assistedby,
       req.body.comments
       )
+
       console.log(addNew)
+      
       res.render('successful', 
       {
         data: addNew[0],
-      });
-
-      
-    
+      });  
 });
 
 app.listen(3000, function() {
