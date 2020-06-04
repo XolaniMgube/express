@@ -26,3 +26,7 @@ label{
 input{
     height: 25px;
 }
+
+#submit{
+    width: 100px;
+}
